@@ -1,12 +1,12 @@
+# App de Recursos de Aprendizaje
+
+Aplicación móvil construida con **React Native** y **Expo**, que permite a los usuarios gestionar recursos de aprendizaje como videos y tutoriales. Consume una API REST alojada en [MockAPI.io](https://mockapi.io/) y permite funcionalidades CRUD (crear, leer, actualizar, eliminar).
+
 ## Integrantes
 María José Rivera Flores - RF231136
 
 ## Video demostartivo de funcionamiento
 https://drive.google.com/drive/folders/1DuASwsKMvr7Gw7P68xwFtO2JFQuuUE14?usp=drive_link
-
-# App de Recursos de Aprendizaje
-
-Aplicación móvil construida con **React Native** y **Expo**, que permite a los usuarios gestionar recursos de aprendizaje como videos y tutoriales. Consume una API REST alojada en [MockAPI.io](https://mockapi.io/) y permite funcionalidades CRUD (crear, leer, actualizar, eliminar).
 
 ## Funcionalidades
 
