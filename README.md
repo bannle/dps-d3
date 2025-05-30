@@ -1,5 +1,5 @@
 ## Integrantes
-María José Rivera Flores
+María José Rivera Flores - RF231136
 
 ## Video demostartivo de funcionamiento
 https://drive.google.com/drive/folders/1DuASwsKMvr7Gw7P68xwFtO2JFQuuUE14?usp=drive_link
