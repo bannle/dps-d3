@@ -3,14 +3,14 @@ import { Modal, Alert, ActivityIndicator, FlatList, StyleSheet, Image, Linking, 
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
-export default function TodosScreen() {
+export default function ArticulosScreen() {
     const [recursos, setRecursos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
     const [recursoSeleccionado, setRecursoSeleccionado] = useState(null);
     const navigation = useNavigation();
     const [busqueda, setBusqueda] = useState('');
-    const [recursosFiltrados, setRecursosFiltrados] = useState([]);
+    const [articulosFiltrados, setArticulosFiltrados] = useState([]);
 
     useFocusEffect(
         useCallback(() => {
@@ -19,27 +19,31 @@ export default function TodosScreen() {
     );
 
     useEffect(() => {
-        setRecursosFiltrados(recursos);
+        setArticulosFiltrados(recursos);
     }, [recursos]);
 
-    const filtrarRecursos = (texto) => {
+    useEffect(() => {
+        obtenerRecursos();
+    }, []);
+
+    const filtrarArticulos = (texto) => {
         setBusqueda(texto);
         const textoMinuscula = texto.toLowerCase();
 
         const filtrados = recursos.filter(item =>
             item.titulo?.toLowerCase().includes(textoMinuscula) ||
             item.id?.toString().includes(textoMinuscula) ||
-            item.categoria?.toLowerCase().includes(textoMinuscula) ||
-            item.tipo?.toLowerCase().includes(textoMinuscula)
+            item.categoria?.toString().includes(textoMinuscula)
         );
 
-        setRecursosFiltrados(filtrados);
+        setArticulosFiltrados(filtrados);
     };
 
     const obtenerRecursos = async () => {
         try {
             const response = await axios.get('https://683796792c55e01d184a4434.mockapi.io/api/recursos/recursos');
-            setRecursos(response.data);
+            const articulos = response.data.filter((item) => item.tipo?.toLowerCase() === 'articulo');
+            setRecursos(articulos);
         } catch (error) {
             console.error('Error al obtener recursos:', error.response?.data || error.message);
         } finally {
@@ -75,12 +79,11 @@ export default function TodosScreen() {
             />
             <Text style={styles.titulo}>{item.titulo}</Text>
             <Text style={styles.descripcion}>{item.descripcion}</Text>
-            <Text style={styles.descripcion}>Tipo: {item.tipo}</Text>
             <Text style={styles.descripcion}>Categoría: {item.categoria}</Text>
             <Text style={styles.descripcion}>ID: {item.id}</Text>
 
             <TouchableOpacity onPress={() => abrirEnlace(item.enlace?.url || item.enlace)} style={styles.boton}>
-                <Text style={styles.botonTexto}>Ver Recurso</Text>
+                <Text style={styles.botonTexto}>Leer Artículo</Text>
             </TouchableOpacity>
 
             <View style={styles.botonesAccion}>
@@ -105,7 +108,7 @@ export default function TodosScreen() {
         return (
             <View style={styles.loadingContainer}>
                 <ActivityIndicator size="large" color="#007bff" />
-                <Text>Cargando recursos...</Text>
+                <Text>Cargando artículos...</Text>
             </View>
         );
     }
@@ -113,19 +116,19 @@ export default function TodosScreen() {
     return (
         <View style={{ flex: 1 }}>
             <TextInput
-                placeholder="Buscar por título, ID, tipo o categoría"
+                placeholder="Buscar por título o ID"
                 value={busqueda}
-                onChangeText={filtrarRecursos}
+                onChangeText={filtrarArticulos}
                 style={styles.barraBusqueda}
             />
 
-            {recursosFiltrados.length === 0 ? (
+            {articulosFiltrados.length === 0 ? (
                 <View style={styles.sinRecursosContainer}>
                     <Text style={styles.sinRecursosTexto}>No hay recursos por el momento</Text>
                 </View>
             ) : (
                 <FlatList
-                    data={recursosFiltrados}
+                    data={articulosFiltrados}
                     keyExtractor={(item) => item.id}
                     renderItem={renderItem}
                     contentContainerStyle={styles.lista}

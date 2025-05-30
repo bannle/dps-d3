@@ -1,4 +1,3 @@
-// src/screens/MenuScreen.js
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -23,9 +22,9 @@ export default function MenuScreen({ navigation }) {
 
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate('Tutoriales')}
+        onPress={() => navigation.navigate('Articulos')}
       >
-        <Text style={styles.cardText}>📚 Tutoriales</Text>
+        <Text style={styles.cardText}>📚 Articulos</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -34,6 +33,14 @@ export default function MenuScreen({ navigation }) {
       >
         <Text style={styles.cardText}>🧾 Ver todos los recursos</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.card, { backgroundColor: '#4caf50' }]}
+        onPress={() => navigation.navigate('AgregarRecurso')}
+      >
+        <Text style={[styles.cardText, { color: '#fff' }]}>➕ Agregar Recurso</Text>
+      </TouchableOpacity>
+
     </View>
   );
 }
