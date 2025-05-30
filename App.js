@@ -10,6 +10,7 @@ import EditarRecursoScreen from './src/screens/EditarRecursoScreen';
 import VideosScreen from './src/screens/VideosScreen';
 import ArticulosScreen from './src/screens/ArticulosScreen';
 import TodosScreen from './src/screens/TodosScreen';
+import TutorialesScreen from './src/screens/TutorialesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen name="Videos" component={VideosScreen} options={{ title:'Videos' }}/>
         <Stack.Screen name="Articulos" component={ArticulosScreen} options={{ title:'Articulos' }}/>
         <Stack.Screen name="Todos" component={TodosScreen} options={{ title: 'Todos' }}/>
+        <Stack.Screen name="Tutoriales" component={TutorialesScreen} options={{ title: 'Tutoriales' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

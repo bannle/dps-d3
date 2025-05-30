@@ -83,7 +83,8 @@ export default function AgregarRecursoScreen({ navigation }) {
           <Picker.Item label="Selecciona un tipo..." value="" />
           <Picker.Item label="📘 Libro" value="libro" />
           <Picker.Item label="🎥 Video" value="video" />
-          <Picker.Item label="📚 Articulo" value="articulo" />
+          <Picker.Item label="💡 Articulo" value="articulo" />
+          <Picker.Item label="📚 Tutorial" value="tutorial" />
         </Picker>
       </View>
 

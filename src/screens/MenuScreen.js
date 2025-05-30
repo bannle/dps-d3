@@ -24,7 +24,14 @@ export default function MenuScreen({ navigation }) {
         style={styles.card}
         onPress={() => navigation.navigate('Articulos')}
       >
-        <Text style={styles.cardText}>📚 Articulos</Text>
+        <Text style={styles.cardText}>💡 Articulos</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => navigation.navigate('Tutoriales')}
+      >
+        <Text style={styles.cardText}>📚 Tutoriales</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
