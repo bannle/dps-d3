@@ -46,7 +46,7 @@ export default function EditarRecursoScreen({ route, navigation }) {
         enlace,
         categoria,
         tipo,
-      });
+      }, recursoFinal);
 
       Alert.alert('Éxito', 'Recurso actualizado correctamente.', [
         { text: 'OK', onPress: () => navigation.goBack() },
