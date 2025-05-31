@@ -33,28 +33,29 @@ export default function EditarRecursoScreen({ route, navigation }) {
   };
 
     const recursoFinal = {
-      ...recurso,
-      imagen: recurso.imagen.trim() === '' ? imagenPorDefecto(tipo) : recurso.imagen,
-    };
+  ...recurso,
+  titulo,
+  descripcion,
+  imagen: imagen.trim() === '' ? imagenPorDefecto(tipo) : imagen,
+  enlace,
+  categoria,
+  tipo,
+};
 
+try {
+  await axios.put(
+    `https://683796792c55e01d184a4434.mockapi.io/api/recursos/recursos/${recurso.id}`,
+    recursoFinal
+  );
 
-    try {
-      await axios.put(`https://683796792c55e01d184a4434.mockapi.io/api/recursos/recursos/${recurso.id}`, {
-        titulo,
-        descripcion,
-        imagen,
-        enlace,
-        categoria,
-        tipo,
-      }, recursoFinal);
+  Alert.alert('Éxito', 'Recurso actualizado correctamente.', [
+    { text: 'OK', onPress: () => navigation.goBack() },
+  ]);
+} catch (error) {
+  console.error(error);
+  Alert.alert('Error', 'Hubo un problema al actualizar el recurso.');
+}
 
-      Alert.alert('Éxito', 'Recurso actualizado correctamente.', [
-        { text: 'OK', onPress: () => navigation.goBack() },
-      ]);
-    } catch (error) {
-      console.error(error);
-      Alert.alert('Error', 'Hubo un problema al actualizar el recurso.');
-    }
   };
 
   const cancelarEdicion = () => {
